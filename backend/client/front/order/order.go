@@ -48,4 +48,16 @@ func ClientOrderhandle(r *gin.Engine, redisC *redis.Client, client *resty.Client
 		}
 		c.JSON(200, gin.H{"message": "获取任务列表成功", "data": taskData})
 	})
+	order.GET("/status/order", func(c *gin.Context) {
+		MslNo := c.Query("uuid")
+		log.Printf("接收到前端传来的查询活动预备模拟全部订单请求，活动ID为 %s", MslNo)
+		var orderData []model.OrderDB
+		orderData, err := Redis.GetOrderInformationByMslNo(MslNo, redisC)
+		if err != nil {
+			log.Printf("Failed to get order information: %v", err)
+			c.JSON(500, gin.H{"message": "获取订单信息失败"})
+			return
+		}
+		c.JSON(200, gin.H{"message": "获取订单信息成功", "data": orderData})
+	})
 }

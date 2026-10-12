@@ -5,12 +5,6 @@ import (
 	"service/Tools"
 )
 
-type OrderDB struct {
-	Uuid      string `json:"uuid"`
-	MslNo     string `json:"msl_no"`
-	StartTime string `json:"start_time"`
-}
-
 func CreateAndInsertOrderToSQL(MslNo string, db *sql.DB) (OrderDB, error) {
 	sqlSelect := "SELECT start_time FROM activity WHERE msl_no = ?"
 	var startTime string

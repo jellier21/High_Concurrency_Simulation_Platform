@@ -44,3 +44,41 @@ func GetTaskMessageInRedis(client *redis.Client) ([]model.TaskDB, error) {
 
 	return list, nil
 }
+
+func GetOrderInformationByMslNo(mslNO string, client *redis.Client) ([]model.OrderDB, error) {
+	ctx := context.Background()
+	var allKeys []string
+	// 游标，初始0
+	cursor := uint64(0)
+	for {
+		// Scan：游标，匹配表达式，每次最多返回数量
+		keys, nextCursor, err := client.Scan(ctx, cursor, "order:*", 100).Result()
+		if err != nil {
+			return nil, err
+		}
+		allKeys = append(allKeys, keys...)
+		cursor = nextCursor
+		if cursor == 0 {
+			break // 游标回到0，遍历结束
+		}
+	}
+
+	var list []model.OrderDB
+	// 循环读取每个activity的hash数据
+	for _, k := range allKeys {
+		hashData, err := client.HGetAll(ctx, k).Result()
+		if err != nil {
+			continue
+		}
+		// 跳过空壳数据，避免误导回源判断
+		if hashData["uuid"] == "" && hashData["msl_no"] == "" && hashData["start_time"] == "" {
+			continue
+		}
+		list = append(list, model.OrderDB{Uuid: hashData["uuid"], MslNo: hashData["msl_no"], StartTime: hashData["start_time"]})
+		if hashData["msl_no"] != mslNO {
+			continue
+		}
+	}
+
+	return list, nil
+}
