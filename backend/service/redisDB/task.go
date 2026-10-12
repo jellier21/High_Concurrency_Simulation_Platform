@@ -14,12 +14,14 @@ func InsertTaskRedisMessage(task sqldb.TaskDB, client *redis.Client) error {
 
 	// HSet 存 hash 字段
 	err := client.HSet(ctx, key, map[string]interface{}{
-		"uid":         task.Uuid,
+		"uuid":        task.Uuid,
+		"msl_no":      task.MslNo,
 		"status":      task.Status,
 		"total":       task.Total,
 		"success_int": task.SuccessInt,
 		"fail_int":    task.FailInt,
 	}).Err()
+
 	if err != nil {
 		return err
 	}
@@ -27,21 +29,24 @@ func InsertTaskRedisMessage(task sqldb.TaskDB, client *redis.Client) error {
 }
 
 func UpdateTaskRedisMessage(Uuid string, client *redis.Client, db *sql.DB) error {
-	sqlStr := `SELECT uuid,status,total,success_int,fail_int FROM task WHERE uuid = ?`
+	sqlStr := `SELECT uuid,msl_no,status,total,success_int,fail_int FROM task WHERE uuid = ?`
 	row := db.QueryRow(sqlStr, Uuid)
 	var successInt, failInt int64
-	var Status string
+	var MslNo, Status string
 	var Total int
-	err := row.Scan(&Uuid, &Status, &Total, &successInt, &failInt)
+	err := row.Scan(&Uuid, &MslNo, &Status, &Total, &successInt, &failInt)
 	if err != nil {
 		return err
 	}
 	ctx := context.Background()
 	key := fmt.Sprintf("task:%s", Uuid)
 	return client.HSet(ctx, key, map[string]interface{}{
+		"uuid":        Uuid,
+		"msl_no":      MslNo,
 		"status":      Status,
 		"total":       Total,
 		"success_int": successInt,
 		"fail_int":    failInt,
 	}).Err()
+
 }

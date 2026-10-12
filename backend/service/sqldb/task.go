@@ -33,6 +33,25 @@ func CreateTaskDB(mslNo string, num int, db *sql.DB) (TaskDB, error) {
 	return data, nil
 }
 
+func GetTaskDB(db *sql.DB) ([]TaskDB, error) {
+	sqlStr := `SELECT id, uuid, msl_no, status, total, success_int, fail_int FROM task`
+	rows, err := db.Query(sqlStr)
+	if err != nil {
+		return []TaskDB{}, err
+	}
+	defer rows.Close()
+	var data []TaskDB
+	for rows.Next() {
+		var item TaskDB
+		err := rows.Scan(&item.ID, &item.Uuid, &item.MslNo, &item.Status, &item.Total, &item.SuccessInt, &item.FailInt)
+		if err != nil {
+			return []TaskDB{}, err
+		}
+		data = append(data, item)
+	}
+	return data, nil
+}
+
 func UpdataTaskForOneSuccess(uuid string, db *sql.DB) error {
 	sqlStr := `UPDATE task SET success_int = success_int + 100 WHERE uuid = ?`
 	_, err := db.Exec(sqlStr, uuid)

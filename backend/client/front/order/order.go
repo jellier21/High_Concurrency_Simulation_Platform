@@ -1,7 +1,9 @@
 package order
 
 import (
+	"client/Redis"
 	"client/Resty"
+	"client/model"
 	"github.com/gin-gonic/gin"
 	"github.com/go-resty/resty/v2"
 	"github.com/redis/go-redis/v9"
@@ -31,5 +33,19 @@ func ClientOrderhandle(r *gin.Engine, redisC *redis.Client, client *resty.Client
 				"total":  taskData.Total,
 			},
 		})
+	})
+	order.GET("/status/task", func(c *gin.Context) {
+		var taskData []model.TaskDB
+		taskData, err := Redis.GetTaskMessageInRedis(redisC)
+		if err != nil {
+			log.Println("无法从redis缓存中命中task,正在查找数据库")
+			taskData, err = Resty.GetOrderTaskInformationBySQL(client)
+			if err != nil {
+				log.Printf("Failed to get order task information: %v", err)
+				c.JSON(500, gin.H{"message": "获取任务列表失败"})
+				return
+			}
+		}
+		c.JSON(200, gin.H{"message": "获取任务列表成功", "data": taskData})
 	})
 }

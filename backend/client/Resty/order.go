@@ -1,6 +1,7 @@
 package Resty
 
 import (
+	"client/model"
 	"encoding/json"
 	"fmt"
 	"github.com/go-resty/resty/v2"
@@ -8,13 +9,7 @@ import (
 )
 
 type TaskDB struct {
-	ID         int
-	Uuid       string `json:"uuid"`
-	MslNo      string `json:"msl_no"`
-	Status     string `json:"status"` //Success|Interrupt|Running
-	Total      int64  `json:"total"`
-	SuccessInt int64  `json:"success_int"`
-	FailInt    int64  `json:"fail_int"`
+	model.TaskDB
 }
 type TaskResponse struct {
 	Task TaskDB `json:"task"`
@@ -36,4 +31,18 @@ func CreateOrderTask(mslNo string, count int, client *resty.Client) (TaskDB, err
 		return TaskDB{}, err
 	}
 	return respBody.Task, nil
+}
+
+func GetOrderTaskInformationBySQL(client *resty.Client) ([]model.TaskDB, error) {
+	resp, err := client.R().
+		Get("http://localhost:8081/api/task/get")
+	if err != nil {
+		return []model.TaskDB{}, err
+	}
+	var respBody []model.TaskDB
+	err = json.Unmarshal(resp.Body(), &respBody)
+	if err != nil {
+		return []model.TaskDB{}, err
+	}
+	return respBody, nil
 }

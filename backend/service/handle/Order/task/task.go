@@ -37,4 +37,13 @@ func OrderTaskService(r *gin.Engine, db *sql.DB, redisC *redis.Client) {
 		}()
 
 	})
+	task.GET("/get", func(c *gin.Context) {
+		var taskData []sqldb.TaskDB
+		taskData, err := sqldb.GetTaskDB(db)
+		if err != nil {
+			c.JSON(500, gin.H{"error": err.Error()})
+			return
+		}
+		c.JSON(200, gin.H{"task": taskData})
+	})
 }
