@@ -1,0 +1,101 @@
+:root {
+    --primary: #409eff;
+    --primary-hover: #66b1ff;
+    --bg: #f0f2f5;
+    --card-bg: #ffffff;
+    --radius: 10px;
+    --shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    --text: #303133;
+    --text-light: #909399;
+    --border: #dcdfe6;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* 通用卡片 */
+.card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 22px 26px;
+    margin-bottom: 20px;
+}
+
+/* 卡片标题（左侧蓝色竖条装饰） */
+.card-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+.card-title::before {
+    content: "";
+    width: 4px;
+    height: 18px;
+    background: var(--primary);
+    border-radius: 2px;
+}
+
+/* 输入 + 按钮组合行 */
+.form-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+/* 输入框 */
+.input {
+    flex: 1;
+    padding: 10px 14px;
+    font-size: 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    outline: none;
+    background: #fff;
+    transition: border-color .2s, box-shadow .2s;
+}
+.input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(64, 158, 255, 0.15);
+}
+
+/* 主按钮 */
+.btn {
+    padding: 10px 26px;
+    font-size: 14px;
+    color: #fff;
+    background: var(--primary);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background .2s, transform .1s;
+}
+.btn:hover { background: var(--primary-hover); }
+.btn:active { transform: scale(0.97); }
+
+/* 空状态占位区 */
+.empty {
+    min-height: 140px;
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    background: #fafafa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--text-light);
+    font-size: 14px;
+}
+.empty .empty-icon { font-size: 32px; opacity: 0.5; }
