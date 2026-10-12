@@ -4,9 +4,10 @@ import (
 	"client/Redis"
 	"client/model"
 	"github.com/gin-gonic/gin"
+	"github.com/redis/go-redis/v9"
 )
 
-func RabbitMQhandle(r *gin.Engine, client *Redis.Client) {
+func RabbitMQhandle(r *gin.Engine, client *redis.Client) {
 	rabbit := r.Group("/api/rabbitmq")
 	rabbit.POST("/start", func(c *gin.Context) {
 		orderUid := c.PostForm("uuid")
