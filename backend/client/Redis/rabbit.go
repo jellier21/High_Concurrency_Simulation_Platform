@@ -19,8 +19,9 @@ func GetRedisOrderByUuid(uuid string, client *redis.Client) (model.OrderDB, erro
 		return model.OrderDB{}, fmt.Errorf("order not found")
 	}
 	return model.OrderDB{
-		Uuid:      hashMap["uuid"],
+		Uuid:      hashMap["uid"],
 		MslNo:     hashMap["msl_no"],
 		StartTime: hashMap["start_time"],
+		Status:    hashMap["status"],
 	}, nil
 }

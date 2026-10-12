@@ -46,3 +46,18 @@ func GetOrderTaskInformationBySQL(client *resty.Client) ([]model.TaskDB, error) 
 	}
 	return respBody, nil
 }
+
+func GetOrderInformationByUuid(uuid string, client *resty.Client) (model.OrderDB, error) {
+	resp, err := client.R().
+		SetQueryParam("uuid", uuid).
+		Get("http://localhost:8081/api/order/get")
+	if err != nil {
+		return model.OrderDB{}, err
+	}
+	var respBody model.OrderDB
+	err = json.Unmarshal(resp.Body(), &respBody)
+	if err != nil {
+		return model.OrderDB{}, err
+	}
+	return respBody, nil
+}

@@ -21,3 +21,13 @@ func CreateAndInsertOrderToSQL(MslNo string, db *sql.DB) (OrderDB, error) {
 	return OrderDB{Uuid: uuid, MslNo: MslNo, StartTime: startTime, Status: "WAITING"}, nil
 
 }
+
+func GetOrderMessageInSQL(Uuid string, db *sql.DB) (OrderDB, error) {
+	var orderData OrderDB
+	sqlStr := "SELECT uuid, msl_no, start_time, status FROM `order` WHERE uuid = ?"
+	err := db.QueryRow(sqlStr, Uuid).Scan(&orderData.Uuid, &orderData.MslNo, &orderData.StartTime, &orderData.Status)
+	if err != nil {
+		return OrderDB{}, err
+	}
+	return orderData, nil
+}

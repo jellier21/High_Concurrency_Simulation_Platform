@@ -46,4 +46,15 @@ func OrderTaskService(r *gin.Engine, db *sql.DB, redisC *redis.Client) {
 		}
 		c.JSON(200, gin.H{"task": taskData})
 	})
+	OrderApi := r.Group("/api/order")
+	OrderApi.GET("/get", func(c *gin.Context) {
+		Uuid := c.Query("uuid")
+		var orderData sqldb.OrderDB
+		orderData, err := sqldb.GetOrderMessageInSQL(Uuid, db)
+		if err != nil {
+			c.JSON(500, gin.H{"error": err.Error()})
+			return
+		}
+		c.JSON(200, gin.H{"order": orderData})
+	})
 }
