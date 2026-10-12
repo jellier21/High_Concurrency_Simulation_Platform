@@ -15,12 +15,21 @@ func ClientOrderhandle(r *gin.Engine, redisC *redis.Client, client *resty.Client
 		mslNo := c.PostForm("msl_no")
 		count, _ := strconv.ParseInt(c.PostForm("count"), 10, 64)
 		log.Printf("接收到前端传来的创建 %d 条订单请求", count)
-		err := Resty.CreateOrderTask(mslNo, int(count), client)
+		var taskData Resty.TaskDB
+		taskData, err := Resty.CreateOrderTask(mslNo, int(count), client)
 		if err != nil {
 			log.Printf("Failed to create order task: %v", err)
 			c.JSON(500, gin.H{"message": "Failed to create order task"})
 			return
 		}
-		c.JSON(200, gin.H{"message": "Order task created successfully"})
+		c.JSON(200, gin.H{
+			"message": "Order task created successfully",
+			"data": gin.H{
+				"uuid":   taskData.Uuid,
+				"msl_no": taskData.MslNo,
+				"status": taskData.Status,
+				"total":  taskData.Total,
+			},
+		})
 	})
 }
