@@ -12,11 +12,12 @@ func CreateAndInsertOrderToSQL(MslNo string, db *sql.DB) (OrderDB, error) {
 	if err != nil {
 		return OrderDB{}, err
 	}
-	sqlStr := "INSERT INTO `order` (uuid, msl_no, start_time) VALUES (?, ?, ?)"
+	sqlStr := "INSERT INTO `order` (uuid, msl_no, start_time, status) VALUES (?, ?, ?, ?)"
 	uuid := Tools.CreateOnlyUuid()
-	_, err = db.Exec(sqlStr, uuid, MslNo, startTime)
+	_, err = db.Exec(sqlStr, uuid, MslNo, startTime, "WAITING")
 	if err != nil {
 		return OrderDB{}, err
 	}
-	return OrderDB{Uuid: uuid, MslNo: MslNo, StartTime: startTime}, nil
+	return OrderDB{Uuid: uuid, MslNo: MslNo, StartTime: startTime, Status: "WAITING"}, nil
+
 }

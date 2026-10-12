@@ -16,6 +16,7 @@ func InsertOrderRedisMessage(order sqldb.OrderDB, client *redis.Client) error {
 		"uid":        order.Uuid,
 		"msl_no":     order.MslNo,
 		"start_time": order.StartTime,
+		"status":     order.Status,
 	}).Err()
 	if err != nil {
 		return err

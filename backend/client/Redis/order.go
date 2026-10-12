@@ -74,7 +74,7 @@ func GetOrderInformationByMslNo(mslNO string, client *redis.Client) ([]model.Ord
 		if hashData["uuid"] == "" && hashData["msl_no"] == "" && hashData["start_time"] == "" {
 			continue
 		}
-		list = append(list, model.OrderDB{Uuid: hashData["uuid"], MslNo: hashData["msl_no"], StartTime: hashData["start_time"]})
+		list = append(list, model.OrderDB{Uuid: hashData["uid"], MslNo: hashData["msl_no"], StartTime: hashData["start_time"], Status: hashData["status"]})
 		if hashData["msl_no"] != mslNO {
 			continue
 		}

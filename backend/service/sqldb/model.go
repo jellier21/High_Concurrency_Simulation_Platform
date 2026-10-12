@@ -10,4 +10,5 @@ type OrderDB struct {
 	Uuid      string `json:"uuid"`
 	MslNo     string `json:"msl_no"`
 	StartTime string `json:"start_time"`
+	Status    string `json:"status"`
 }
