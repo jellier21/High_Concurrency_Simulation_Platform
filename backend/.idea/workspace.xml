@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="500b0939-b788-4922-900b-65620bfbf22a" name="更改" comment="生产者通道搭建完毕">
+      <change beforePath="$PROJECT_DIR$/client/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/rabbitmq/Rabbit/handle.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/rabbitmq/Rabbit/handle.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/rabbitmq/rabbit.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/rabbitmq/rabbit.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/handle/Order/order/create.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/handle/Order/order/order.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/redisDB/activity.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/redisDB/activity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/redisDB/order.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/redisDB/order.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/sqldb/activity.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/sqldb/activity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/sqldb/order.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/sqldb/order.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/user/userMain.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/user/userMain.vue" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" url="file://$USER_HOME$/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.9.windows-amd64" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="3KVFcz05JA4VRVKVO1IAbfUfPxg" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
+    &quot;Go 构建.go build client.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build service.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.GoLinterPluginOnboarding&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.GoLinterPluginStorageMigration&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/18106&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;,
+      &quot;mysql_aurora&quot;
+    ]
+  }
+}</component>
+  <component name="RunManager" selected="Go 构建.go build client">
+    <configuration name="go build client" type="GoApplicationRunConfiguration" factoryName="Go Application" nameIsGenerated="true">
+      <module name="backend" />
+      <working_directory value="$PROJECT_DIR$/client" />
+      <kind value="DIRECTORY" />
+      <directory value="$PROJECT_DIR$/client" />
+      <filePath value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build service" type="GoApplicationRunConfiguration" factoryName="Go Application" nameIsGenerated="true">
+      <module name="backend" />
+      <working_directory value="$PROJECT_DIR$/service" />
+      <kind value="DIRECTORY" />
+      <directory value="$PROJECT_DIR$/service" />
+      <filePath value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Go 构建.go build client" />
+      <item itemvalue="Go 构建.go build service" />
+    </list>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-gosdk-3b128438d3f6-34ac7aa8f6ab-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-251.23774.430" />
+        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-GO-251.23774.430" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="500b0939-b788-4922-900b-65620bfbf22a" name="更改" comment="" />
+      <created>1791634912867</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1791634912867</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="第一次提交，前端模板以及创建活动和创建高积压指定数量订单已完成" />
+    <MESSAGE value="修改/api/order/create的一些bug" />
+    <MESSAGE value="添加查看任务状态接口/api/order/status/task，修正redis未写入完全bug" />
+    <MESSAGE value="添加查看指定活动模拟所用订单接口/api/order/status/order" />
+    <MESSAGE value="添加数据库表order键值Status状态并修正相关代码" />
+    <MESSAGE value="编写&lt;核心&gt;队列并发前最后版本" />
+    <MESSAGE value="生产者通道搭建完毕" />
+    <option name="LAST_COMMIT_MESSAGE" value="生产者通道搭建完毕" />
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+</project>

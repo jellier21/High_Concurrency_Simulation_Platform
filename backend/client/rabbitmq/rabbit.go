@@ -7,12 +7,11 @@ import (
 	"client/rabbitmq/Rabbit"
 	"github.com/gin-gonic/gin"
 	"github.com/go-resty/resty/v2"
-	"github.com/rabbitmq/amqp091-go"
 	"github.com/redis/go-redis/v9"
 	"log"
 )
 
-func RabbitMQhandle(r *gin.Engine, client *redis.Client, restyClient *resty.Client, channel *amqp091.Channel) {
+func RabbitMQhandle(r *gin.Engine, client *redis.Client, restyClient *resty.Client) {
 	rabbit := r.Group("/api/rabbitmq")
 	rabbit.POST("/start", func(c *gin.Context) {
 		orderUid := c.PostForm("uuid")
@@ -22,7 +21,7 @@ func RabbitMQhandle(r *gin.Engine, client *redis.Client, restyClient *resty.Clie
 			log.Printf("Redis未命中Uuid为 %s 的订单信息，正在从数据库中获取订单信息", orderUid)
 			OrderData, err = Resty.GetOrderInformationByUuid(orderUid, restyClient)
 		}
-		Err := Rabbit.SendOrderToQueueAndProcessOrder(OrderData, channel)
+		Err := Rabbit.SendOrderToQueueAndProcessOrder(OrderData)
 		if Err != nil {
 			log.Printf("Uuid为 %s 的订单处理失败: %v", orderUid, Err)
 			c.JSON(500, gin.H{"error": Err.Error()})

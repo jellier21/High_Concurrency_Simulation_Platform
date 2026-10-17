@@ -21,6 +21,10 @@ func InsertActivityRedisMessage(uuid, start, end string, client *redis.Client) e
 		return err
 	}
 	return nil
-	//// 过期时间单独设置
-	//return client.Expire(ctx, key, 0).Err()
+}
+
+func GetActivityRedisLastestTime(msl_no string, client *redis.Client) (string, error) {
+	ctx := context.Background()
+	key := fmt.Sprintf("activity:%s", msl_no)
+	return client.HGet(ctx, key, "end_time").Result()
 }

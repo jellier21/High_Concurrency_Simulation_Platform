@@ -31,3 +31,31 @@ func GetOrderMessageInSQL(Uuid string, db *sql.DB) (OrderDB, error) {
 	}
 	return orderData, nil
 }
+
+func SetOrderStatusDeal(Uuid string, db *sql.DB) error {
+	sqlStr := "UPDATE `order` SET status = 'SUCCESS' WHERE uuid = ?"
+	_, err := db.Exec(sqlStr, Uuid)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func GetMslNObyUuidInOrder(uuid string, db *sql.DB) (string, error) {
+	sqlStr := "SELECT msl_no FROM `order` WHERE uuid = ?"
+	var mslNo string
+	err := db.QueryRow(sqlStr, uuid).Scan(&mslNo)
+	if err != nil {
+		return "", err
+	}
+	return mslNo, nil
+}
+
+func SetSQLOrderStatusOverdue(Uuid string, db *sql.DB) error {
+	sqlStr := "UPDATE `order` SET status = 'OVERDUE' WHERE uuid = ?"
+	_, err := db.Exec(sqlStr, Uuid)
+	if err != nil {
+		return err
+	}
+	return nil
+}
