@@ -31,3 +31,13 @@ func GetActivityDB(db *sql.DB) ([]ActivityDB, error) {
 	}
 	return activities, nil
 }
+
+func GetActivitySQLLastestTime(msl_no string, db *sql.DB) (string, error) {
+	sqlStr := `SELECT end_time FROM activity WHERE msl_no = ? ORDER BY end_time DESC LIMIT 1`
+	var latestTime string
+	err := db.QueryRow(sqlStr, msl_no).Scan(&latestTime)
+	if err != nil {
+		return "", err
+	}
+	return latestTime, nil
+}

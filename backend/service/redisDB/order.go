@@ -23,3 +23,26 @@ func InsertOrderRedisMessage(order sqldb.OrderDB, client *redis.Client) error {
 	}
 	return nil
 }
+
+func SetOrderRedisDeal(uuid string, client *redis.Client) error {
+	ctx := context.Background()
+	key := fmt.Sprintf("order:%s", uuid)
+	return client.HSet(ctx, key, "status", "SUCCESS").Err()
+}
+
+func GetMslNORedisByUuidInOrder(uuid string, client *redis.Client) (string, error) {
+	ctx := context.Background()
+	key := fmt.Sprintf("order:%s", uuid)
+	return client.HGet(ctx, key, "msl_no").Result()
+}
+
+func SetOrderOverdue(uuid string, client *redis.Client) error {
+	ctx := context.Background()
+	key := fmt.Sprintf("order:%s", uuid)
+	return client.HSet(ctx, key, "status", "OVERDUE").Err()
+}
+
+func GetOrderStatus(uuid string, client *redis.Client) (string, error) {
+	ctx := context.Background()
+	return client.HGet(ctx, fmt.Sprintf("order:%s", uuid), "status").Result()
+}
