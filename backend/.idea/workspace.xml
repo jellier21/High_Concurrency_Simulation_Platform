@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="500b0939-b788-4922-900b-65620bfbf22a" name="更改" comment="完整并发链路开发完成，大约60订单/s，超出活动时间自动标记超时">
+    <list default="true" id="500b0939-b788-4922-900b-65620bfbf22a" name="更改" comment="最终版本，订单处理速率为2000单/s左右，采用攒批处理">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/rabbitmq/business/consumer.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/rabbitmq/business/consumer.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/rabbitmq/business/order.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/rabbitmq/business/order.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/redisDB/order.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/redisDB/order.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/sqldb/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/sqldb/init.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../redis_order_result.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +124,8 @@
     <MESSAGE value="编写&lt;核心&gt;队列并发前最后版本" />
     <MESSAGE value="生产者通道搭建完毕" />
     <MESSAGE value="完整并发链路开发完成，大约60订单/s，超出活动时间自动标记超时" />
-    <option name="LAST_COMMIT_MESSAGE" value="完整并发链路开发完成，大约60订单/s，超出活动时间自动标记超时" />
+    <MESSAGE value="最终版本，订单处理速率为2000单/s左右，采用攒批处理" />
+    <option name="LAST_COMMIT_MESSAGE" value="最终版本，订单处理速率为2000单/s左右，采用攒批处理" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
