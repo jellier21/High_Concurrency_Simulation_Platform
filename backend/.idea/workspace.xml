@@ -4,17 +4,13 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="500b0939-b788-4922-900b-65620bfbf22a" name="更改" comment="生产者通道搭建完毕">
-      <change beforePath="$PROJECT_DIR$/client/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/rabbitmq/Rabbit/handle.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/rabbitmq/Rabbit/handle.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/rabbitmq/rabbit.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/rabbitmq/rabbit.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/handle/Order/order/create.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/handle/Order/order/order.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/redisDB/activity.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/redisDB/activity.go" afterDir="false" />
+    <list default="true" id="500b0939-b788-4922-900b-65620bfbf22a" name="更改" comment="完整并发链路开发完成，大约60订单/s，超出活动时间自动标记超时">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/rabbitmq/business/consumer.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/rabbitmq/business/consumer.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/rabbitmq/business/order.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/rabbitmq/business/order.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/redisDB/order.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/redisDB/order.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/sqldb/activity.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/sqldb/activity.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/sqldb/order.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/sqldb/order.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/user/userMain.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/user/userMain.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/sqldb/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/sqldb/init.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../redis_order_result.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +77,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected="Go 构建.go build client">
+  <component name="RunManager" selected="Go 构建.go build service">
     <configuration name="go build client" type="GoApplicationRunConfiguration" factoryName="Go Application" nameIsGenerated="true">
       <module name="backend" />
       <working_directory value="$PROJECT_DIR$/client" />
@@ -132,7 +128,8 @@
     <MESSAGE value="添加数据库表order键值Status状态并修正相关代码" />
     <MESSAGE value="编写&lt;核心&gt;队列并发前最后版本" />
     <MESSAGE value="生产者通道搭建完毕" />
-    <option name="LAST_COMMIT_MESSAGE" value="生产者通道搭建完毕" />
+    <MESSAGE value="完整并发链路开发完成，大约60订单/s，超出活动时间自动标记超时" />
+    <option name="LAST_COMMIT_MESSAGE" value="完整并发链路开发完成，大约60订单/s，超出活动时间自动标记超时" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

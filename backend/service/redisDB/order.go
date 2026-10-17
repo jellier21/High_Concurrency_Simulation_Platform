@@ -46,3 +46,9 @@ func GetOrderStatus(uuid string, client *redis.Client) (string, error) {
 	ctx := context.Background()
 	return client.HGet(ctx, fmt.Sprintf("order:%s", uuid), "status").Result()
 }
+
+// 一次 HGetAll 拿回整个 order hash 的所有字段
+func GetOrderAllByUuid(uuid string, client *redis.Client) (map[string]string, error) {
+	ctx := context.Background()
+	return client.HGetAll(ctx, fmt.Sprintf("order:%s", uuid)).Result()
+}
